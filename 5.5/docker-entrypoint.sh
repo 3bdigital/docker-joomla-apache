@@ -27,18 +27,18 @@ if [ ! -d "/var/www/html/logs" ]; then
   mkdir /var/www/html/logs
 fi
 
-chown www-data:www-data /var/www/html/.htaccess
-chown www-data:www-data /var/www/html/configuration.php
-chown -R www-data:www-data /var/www/html/logs
-chown -R www-data:www-data /var/www/html/tmp
-chown -R www-data:www-data /var/www/html/images
-chown -R www-data:www-data /var/www/html/administrator
-chown -R www-data:www-data /var/www/html/components
-chown -R www-data:www-data /var/www/html/language
-chown -R www-data:www-data /var/www/html/libraries
-chown -R www-data:www-data /var/www/html/media
-chown -R www-data:www-data /var/www/html/modules
-chown -R www-data:www-data /var/www/html/plugins
-chown -R www-data:www-data /var/www/html/cache
+chown :www-data /var/www/html/.htaccess
+chown :www-data /var/www/html/configuration.php
+chown -R :www-data /var/www/html/logs
+chown -R :www-data /var/www/html/tmp
+chown -R :www-data /var/www/html/images
+chown -R :www-data /var/www/html/administrator
+chown -R :www-data /var/www/html/components
+chown -R :www-data /var/www/html/language
+chown -R :www-data /var/www/html/libraries
+chown -R :www-data /var/www/html/media
+chown -R :www-data /var/www/html/modules
+chown -R :www-data /var/www/html/plugins
+chown -R :www-data /var/www/html/cache
 
 exec "$@"
