@@ -12,7 +12,15 @@ RUN docker-php-ext-install mysqli mbstring mcrypt
 RUN touch /usr/local/etc/php/conf.d/uploads.ini \
     && echo "upload_max_filesize = 250M;" >> /usr/local/etc/php/conf.d/uploads.ini
 
+RUN /usr/sbin/a2ensite default-ssl
+RUN /usr/sbin/a2enmod ssl
+
+EXPOSE 443
+
 COPY docker-entrypoint.sh /entrypoint.sh
+
+COPY 3bweb.com.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
+COPY 3bweb.com.key /etc/ssl/private/ssl-cert-snakeoil.key
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
