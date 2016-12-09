@@ -19,8 +19,8 @@ EXPOSE 443
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-COPY 3bweb.com.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
-COPY 3bweb.com.key /etc/ssl/private/ssl-cert-snakeoil.key
+COPY ssl/dev.3bweb.com.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
+COPY ssl/dev.3bweb.com.key /etc/ssl/private/ssl-cert-snakeoil.key
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
