@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.1-apache
 
 # Enable Apache Rewrite Module
 RUN a2enmod rewrite
@@ -13,10 +13,10 @@ RUN set -ex; \
 		libbz2-dev \
 		libjpeg-dev \
 		libldap2-dev \
-		libmcrypt-dev \
 		libmemcached-dev \
 		libpng-dev \
 		libpq-dev \
+		libzip-dev \
 	; \
 	\
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
@@ -26,7 +26,6 @@ RUN set -ex; \
 		bz2 \
 		gd \
 		ldap \
-		mcrypt \
 		mysqli \
 		pdo_mysql \
 		pdo_pgsql \
@@ -35,9 +34,9 @@ RUN set -ex; \
 	; \
 	\
 # pecl will claim success even if one install fails, so we need to perform each install separately
-	pecl install APCu-4.0.11; \
-	pecl install memcached-2.2.0; \
-	pecl install redis-4.2.0; \
+	pecl install APCu-5.1.17; \
+	pecl install memcached-3.1.3; \
+	pecl install redis-4.3.0; \
 	\
 	docker-php-ext-enable \
 		apcu \
