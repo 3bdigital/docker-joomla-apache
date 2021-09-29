@@ -18,27 +18,21 @@ fi
 
 sed -i "s/\$host = 'localhost'/\$host = 'mysql'/g" /var/www/html/configuration.php
 sed -i "s/\$user = ''/\$user = 'root'/g" /var/www/html/configuration.php
-sed -i "s/\$password = ''/\$password = '$MYSQL_ENV_MYSQL_ROOT_PASSWORD'/g" /var/www/html/configuration.php
-sed -i "s/\$db = ''/\$db = '$MYSQL_ENV_MYSQL_DATABASE'/g" /var/www/html/configuration.php
-sed -i "s/\$dbprefix = 'jos_'/\$dbprefix = '$JOOMLA_MYSQL_PREFIX'/g" /var/www/html/configuration.php
-sed -i "s/\$log_path = '/var/logs'/\$log_path = '/var/www/html/logs'/g" /var/www/html/configuration.php
+sed -i "s/\$password = ''/\$password = '$MYSQL_ROOT_PASSWORD'/g" /var/www/html/configuration.php
+sed -i "s/\$db = ''/\$db = '$MYSQL_JOOMLA_DATABASE'/g" /var/www/html/configuration.php
+sed -i "s/\$dbprefix = 'jos_'/\$dbprefix = '$MYSQL_JOOMLA_PREFIX'/g" /var/www/html/configuration.php
+sed -i "s/\$log_path = '\/logs'/\$log_path = 'logs'/g" /var/www/html/configuration.php
+sed -i "s/\$log_path = '\/tmp'/\$log_path = 'tmp'/g" /var/www/html/configuration.php
 
 if [ ! -d "/var/www/html/logs" ]; then
   mkdir /var/www/html/logs
 fi
 
+if [ ! -d "/var/www/html/tmp" ]; then
+  mkdir /var/www/html/tmp
+fi
+
 chown :www-data /var/www/html/.htaccess
 chown :www-data /var/www/html/configuration.php
-chown -R :www-data /var/www/html/logs
-chown -R :www-data /var/www/html/tmp
-chown -R :www-data /var/www/html/images
-chown -R :www-data /var/www/html/administrator
-chown -R :www-data /var/www/html/components
-chown -R :www-data /var/www/html/language
-chown -R :www-data /var/www/html/libraries
-chown -R :www-data /var/www/html/media
-chown -R :www-data /var/www/html/modules
-chown -R :www-data /var/www/html/plugins
-chown -R :www-data /var/www/html/cache
 
 exec "$@"
